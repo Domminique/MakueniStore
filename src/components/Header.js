@@ -112,7 +112,7 @@ const Header = ({
         >
           <div className="flex items-center justify-between">
             <div className="w-full text-green-600 text-2xl font-semibold cursor-pointer">
-              MongoStore
+              MakueniStore
             </div>
             <div className="flex items-center justify-end  space-x-12 w-full">
               {currentCustID !== "63273ef32a32f09fe5d8654f" && (

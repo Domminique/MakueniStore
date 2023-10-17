@@ -1,4 +1,4 @@
-## AI/ML ECommerce 
+## MakueniStore AI/ML ECommerce 
 
 Overview
 inject Batch AI, Real time AI, and Generative AI into an ecommerce application.
@@ -8,7 +8,7 @@ inject Batch AI, Real time AI, and Generative AI into an ecommerce application.
 - Instant Lost Item Cart Updates
 - Interactive Chat and Vector Search for Private Enterprise Data
 
-The MongoStore illustrates how working with MongoDB and AI can create a meaningful, custom user experience and accelerate development and time to value for the business.
+The MakueniStore illustrates how working with MongoDB and Google AI can create a meaningful, custom user experience and accelerate development and time to value for Square the business.
 
 Video Walk-through of demo:
 
@@ -16,43 +16,36 @@ Video Walk-through of demo:
 
 This document is composed of the following parts.
 
-- [Resources & Links](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.n7l3as6puoof)
+- [Feature Examples Walk-through]
 
-- [Feature Examples Walk-through](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.wx34jaytz56)
-
-  - [Analytics](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.82a24n1yiup2)
-  - [Batch AI for Product Recommendation Predictions](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.mv20x4c3mpoz)
-  - [Real time AI for Lost Item Cart Updates](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.y3jugvczgo75)
-  - [Generative AI for interactive chat and product suggestions based on private data](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.1ofx8nw7vf98)
-
-- [How to Recreate on Your Own Atlas Cluster](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.by3x5q93vwrm)
-
-- [How to Customize](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.yts3j8jfoutz) - (_just in case you don’t like being called “Karen”)_
-
-  - [Change the User and Product Recommendations](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.6pydva3afnek)
-  - [Change the Chat Content ](https://docs.google.com/document/d/1DNJIztqNQhZy5WF8sKDzRSpA6hw46r9fPUclte0PyDA/edit#heading=h.rduptk1ux7o5)
+  - [Analytics]
+  - [Batch AI for Product Recommendation Predictions]
+  - [Real time AI for Lost Item Cart Updates]
+  - [Generative AI for interactive chat and product suggestions based on private data]
+  - [How to Recreate on Your Own Atlas Cluster]
+  - [How to Customize]
+  - [Change the User and Product Recommendations]
+  - [Change the Chat Content ]
 
 ## Resources & Links
 
 Link to live application (same link - bit.ly easier to remember):
 
-<https://bit.ly/MDB_AIML>
+<https://makuenistore.netlify.app/>
 
-<https://mongostore-elxkl.mongodbstitch.com/>
+
 
 Video Walk-through of demo:
 
-<https://drive.google.com/file/d/1dwtrRbHRW4_WLiXvs-PY1uIh_NHlakM-/view?usp=drive_link>
 
-Karen Script:
 
-[Karen’s Script v4](https://docs.google.com/document/d/1X5qHaqv3VMROA_A3H9JGq7cS5TBXRrp60RCQhWs64yc/edit?usp=sharing)
+
 
 ## Features
 
-In this example, MongoStore, an online retailer, can capture a customer’s activity, such as clicks, views, purchases, etc. The application can then apply training models, both batch and in real-time, to make product recommendations custom for this user. If items in the customer’s cart go out of stock, MongoStore can immediately recommend similar products, thus reducing friction for the user.
+MakueniStore, an online retailer,  captures customer’s activity, such as clicks, views, purchases, etc. The application  then applys training models, both batch and in real-time, to make product recommendations custom for this user. If items in the customer’s cart go out of stock, MakueniStore can immediately recommend similar products, thus reducing friction for the user.
 
-Finally, MongoStore integrates ChatGPTto allow the customer to interact in a very natural way with MongoStore, asking for advice. MongoStore responds by generating new content (hence “generative” AI) in the form of advice. It also searches MongoStore’s private data, whether in the product collection, previous reviews from other customers, Q&A, etc, to offer even more specific product suggestions.
+Finally, MakueniStore integrates a powerful conversational AI chatbot using Google's PaLM API 2 to create an engaging chatbot  to allow the customer to interact in a very natural way with MakueniStore, asking for advice. MakueniStore responds by generating new content (hence “generative” AI) in the form of advice. It also searches MakueniStore’s private data, whether in the product collection, previous reviews from other customers, Q&A, etc, to offer even more specific product suggestions.
 
 ### Feature 1: Batch Predictive AI - Product Recommendations
 
@@ -62,8 +55,6 @@ Login and compare 2 different user’s product recommendations:
 
 |                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------------------- |
-| _Note to Presenter:\_\_In the code, when logging in, the user email must match exactly but the passwords can be anything._ |
-
 **User Profile 1:** - (This user would be a good one to change as a speaker, ex. “Logging into my account - and modify the code as per instructions below)
 
 [karen@gmail.com](mailto:karen@gmail.com) (MUST)
@@ -331,7 +322,9 @@ Hard code the login email to match what you have in the customer document in Atl
 
 ## Change the Chat and Chat Recommendations
 
-This is actually all hard-coded in the front end. Go to the **Chatbot.js** component. On **line 128** you can find a **messageExchange** array. Presently there are 2 exchanges in the form of objects. You can add as many as you wish.
+We build a powerful conversational AI chatbot using Google's PaLM API 2. Learn how to set up the PaLM account, integrate the API, and create an engaging chatbot interface
+
+
 
 ```js
 {

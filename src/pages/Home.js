@@ -285,7 +285,7 @@ const promotedItems = [
     name: "C++ Hoodie",
     price: {
       value: 49,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -296,7 +296,7 @@ const promotedItems = [
     name: "Vite T-Shirt",
     price: {
       value: 39,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -307,7 +307,7 @@ const promotedItems = [
     name: "CSS Sweater",
     price: {
       value: 49,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -319,7 +319,7 @@ const promotedItems = [
     name: "MongoDB T-Shirt",
     price: {
       value: 39,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -331,7 +331,7 @@ const promotedItems = [
     name: "GitHub Mask",
     price: {
       value: 19,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -342,7 +342,7 @@ const promotedItems = [
     name: "HTML T-Shirt",
     price: {
       value: 39,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -354,7 +354,7 @@ const promotedItems = [
     name: "VS Code T-Shirt",
     price: {
       value: 39,
-      currency: "USD",
+      currency: "KE",
     },
   },
   {
@@ -366,7 +366,7 @@ const promotedItems = [
     name: "Node.js T-Shirt",
     price: {
       value: 39,
-      currency: "USD",
+      currency: "KE",
     },
   },
   // {
