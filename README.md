@@ -38,7 +38,28 @@ Link to live application (same link - bit.ly easier to remember):
 Video Walk-through of demo:
 
 
+API to allow the customer to interact in a very natural way with MakueniStore, asking for advice. MakueniStore responds by generating new content (hence “generative” AI) in the form of advice. It also searches MakueniStore’s private data, whether in the product collection, previous reviews from other customers, Q&A, etc, to offer even more specific product suggestions.
 
+## How we built it
+
+#### Step 1. Prepared Data in MongoDB Atlas running on google cloud
+Stood up an Atlas cluster. Created a database named “makueniStore” with 2 collections “products” and “customers” with the .json files in the git repository.
+#### Step 2. Created Search Index named “default” on products collection 
+The default dynamically mapped index will work but this one is more specific. Make sure to name the index “**default**”.
+#### Step 3. 
+Integrating Square APIs (Orders API, Catalog API, and Inventory API) into MakueniStore using React .
+We get a list of catalog objects and once we receive data from the Square APIs, we can parse and display it in our React components. For example, we use the data to populate product listings, order history, or inventory status.
+
+#### Step 4. 
+Integrated  generative AI capabilities and the PaLM API into our React , then built a powerful conversational AI chatbot using Google's PaLM API 2, set up the PaLM account, integrate the API, and create an engaging chatbot interface
+## Challenges we ran into
+We delayed getting our API key , at first we had to hard-coded in the front end. We had to create a component , then build a message Exchange array. 
+## Accomplishments that we're proud of
+We built a strong connections and positive working relationships with the teammates that we hope wil continue in the future projects.
+## What we learned
+Learn how to set up the PaLM account, integrate the API, and create an engaging chatbot interface
+## What's next for Makueni store
+Provide documentation for Square sellers on how to use our pruduct with the integrated Square APIs and  offer customer support to address any questions or issues related to the integration.
 
 
 ## Features
@@ -91,13 +112,85 @@ Once logged into Scott’s account, show the items he has in his shopping cart:-
 
 <img src="https://lh6.googleusercontent.com/ElLh9WvMyzgku_18AYD3w5ujy-YOK2pV08E6lKo_HPVjLtL_FNi5wYIhwD8At_MsOZuudAeYlwVMdlJtdkr2UZTT-nXLhwn7XenBv5p_fekwE7oxZ5ipEP9wvdeEd8Sie9xBqAY7R3m1LEndDw5QwWc" alt="drawing" width="500"/>
 
-## Feature 4: Generative AI - ChatGPT Prompted with Store Data 
+## Feature 4: Generative AI - PaLM API Prompted with Store Data 
+
+
+
 
 <img src="https://lh5.googleusercontent.com/Nv02RfiJxa7_48G9h2SaJmE6uRmoD41-DzzFR55aEZpR29kUYI8LI6AEEDyobxRns7iyPi-Ipm1LZe2e3YTVB_PW2VVa_aDqenWimeMxwrC-3pLHQY0Jpccy--gB9SF-zb9nA1jByED4Aox0gNZk85E" alt="drawing" width="500"/>
 
 |                                                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Note to Presenter:\_\_For these questions, you can type anything in the message box, but the answers are hard-coded to always be the same._ |
+The PaLM API consists of two APIs, each with a distinct method for generating content:
+
+- The Chat API can be used to generate candidate `Message` responses to input messages via the `generateMessage()` function.
+- The Text API can be used to generate candidate `TextCompletion` responses to input strings via the `generateText()` function.
+
+This demo uses the Text API. If you’re looking for a demo that uses the Chat API, see [_Quick, Prompt!_](https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/quick-prompt).
+
+## How it Works
+
+We can prime the model to behave in a certain way using a carefully crafted string of text called a __prompt__. It’s helpful to think of the model as a highly sophisticated text-completion engine: given the context we provide in our prompt, the model tries to output a feasible continuation or completion of that string.
+
+Below is an example of a simple text prompt:
+
+```
+For each animal below, the animal's color is given.
+Animal: crab
+Color: red
+Animal: frog
+Color: green
+Animal: blue jay
+Color: blue
+Animal: flamingo
+Color:
+```
+
+If we send the above string to the model, we might expect the model to output “pink” (likely followed by additional animals and their respective colors). Adapting this prompt to generate the color of a different animal is simply a matter of replacing “flamingo” with the desired animal. Each complete (animal, color) pair in the prompt can be thought of as an __example__—it often only takes a few examples to establish a pattern that the model can follow.
+
+_List It_ uses this same mechanism to prime the model to generate a list from a user input. You can find the prompt in `/src/lib/priming.js`.
+
+## Requirements
+
+- Node.js (version 18.15.0 or higher)
+- Firebase project
+
+Make sure you have either `npm` or `yarn` set up on your machine.
+
+## Developer Setup
+
+Although the PaLM API provides a [REST resource](https://developers.generativeai.google/api/rest/generativelanguage/models?hl=en), it is best practice to avoid embedding API keys directly into code (or in files inside your application’s source tree). If you want to call the PaLM API from the client side as we do in this demo, we recommend using a Firebase project with the Call PaLM API Securely extension enabled.
+
+To set up Firebase:
+
+1. Create a Firebase project at https://console.firebase.google.com.
+
+2. Add a web app to your Firebase project and follow the on-screen instructions to add or install the Firebase SDK.
+
+3. Go to https://console.cloud.google.com and select your Firebase project. Then go to _Security > Secret Manger_ using the left-side menu and make sure the Secret Manager API is enabled.
+
+4. If you don’t already have an API key for the PaLM API, follow [these instructions](https://developers.generativeai.google/tutorials/setup) to get one.
+
+5. Install the Call PaLM API Securely extension from the [Firebase Extensions Marketplace](https://extensions.dev/extensions). Follow the on-screen instructions to configure the extension.
+
+    __NOTE__: Your project must be on the Blaze (pay as you go) plan to install the extension.
+
+6. Enable anonymous authentication for your Firebase project by returning to https://console.firebase.google.com and selecting _Build_ in the left panel. Then go to _Authentication > Sign-in method_ and make sure _Anonymous_ is enabled.
+
+7. Return to https://console.cloud.google.com and select your Firebase project. Click _More Products_ at the bottom of the left-side menu, then scroll down and click _Cloud Functions_. Select each function and then click _Permissions_ at the top. Add `allUsers` to the Cloud Functions Invoker role.
+
+The above instructions assume that this demo will be used for individual/experimental purposes. If you anticipate broader usage, enable App Check in the Firebase extension during installation and see https://firebase.google.com/docs/app-check for an in-depth implementation guide.
+
+To run the application locally:
+
+1. Clone the repo to your local machine.
+
+2. Run `npm i` or `yarn` in the root folder to install dependencies.
+
+3. Add your Firebase info to `src/lib/firebase.config.js`.
+
+4. Run `npm run dev` or `yarn dev` to start the application. The application will be served on localhost:5555. You can change the port in `vite.config.js` if desired.
+
 
 **Scott’s Question 1:**
 
@@ -113,11 +206,7 @@ Once logged into Scott’s account, show the items he has in his shopping cart:-
 
 <img src="https://lh5.googleusercontent.com/7CMtC_c7zysNnu8A9c7ioRdcXa1berIH_lp81B3XJfz1u36Ac6Sf_le-DERK0TiSzjP37GI1WLd34j6nGcXHqHdB-A3qdF5D42FIJ87RVBy2-6JJADXIUZZW8fOi1Lz4MSct4oLNxii4VHZGugOo3Vk" alt="drawing" width="500"/>
 
-# How to Recreate the AI/ML E-Commerce Demo
-
-All the code for the front end, backend, and data can be found here:
-
-REPO: <https://github.com/mongodb-developer/search-ecommerce>
+# How to Recreate the AI/ML
 
 The application can be built and run entirely serverless using MongoDB’s App Services. Below is the simple architecture:
 
